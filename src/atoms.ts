@@ -18,7 +18,6 @@ import {
 } from "./services";
 import { IMarker, TourStates } from "./types";
 import { FeatureCollection } from "geojson";
-import { type } from "os";
 
 /*********************************
  * URL matcher
@@ -347,24 +346,26 @@ export const boundingBoxQueryAtom = atomWithQuery<
 >((get) => {
   const tourPreference = get(tourPreferenceAtom);
   let preferredQuery = {
-    queryKey: ["bounding_box"], 
-    queryFn: fetchBoundingBox
+    queryKey: ["bounding_box"],
+    queryFn: fetchBoundingBox,
   };
 
-  switch(tourPreference) {
-    case "walking": preferredQuery = {
-      queryKey: ["walking_bounding_box"], 
-      queryFn: fetchWalkingBoundingBox
-    };
-    break;
-    case "bus": preferredQuery = {
-      queryKey: ["bus_bounding_box"], 
-      queryFn: fetchBusBoundingBox
-    };
-    break;
+  switch (tourPreference) {
+    case "walking":
+      preferredQuery = {
+        queryKey: ["walking_bounding_box"],
+        queryFn: fetchWalkingBoundingBox,
+      };
+      break;
+    case "bus":
+      preferredQuery = {
+        queryKey: ["bus_bounding_box"],
+        queryFn: fetchBusBoundingBox,
+      };
+      break;
   }
 
-  return (preferredQuery);
+  return preferredQuery;
 });
 
 export const paddedBoundingBoxAtom = atom<LatLngBounds>((get) => {
@@ -377,8 +378,8 @@ export const paddedBoundingBoxAtom = atom<LatLngBounds>((get) => {
 
 export const isDropDownAtom: PrimitiveAtom<boolean> = atom(false);
 
-export const getDropDownAtom = atom(get => {
-  return get(isDropDownAtom) === true ? "flex" : "none"
+export const getDropDownAtom = atom((get) => {
+  return get(isDropDownAtom) === true ? "flex" : "none";
 });
 
 export const tourPreferenceAtom: PrimitiveAtom<string> = atom("full");
