@@ -7,6 +7,8 @@ import { IconOptions, LatLngBounds } from "leaflet";
 import type { useMap } from "react-leaflet";
 
 import { viewControllerMachine } from "./machines/viewController";
+import { IMarker, TourStates, MarkerProgress } from "./types";
+import { FeatureCollection } from "geojson";
 import { fetchOrder, fetchRoute } from "./services/route";
 import { fetchMarkerDetails, fetchMarkers } from "./services/markers";
 import {
@@ -22,8 +24,6 @@ import {
   statement,
   references,
 } from "./services/copy";
-import { IMarker, TourStates } from "./types";
-import { FeatureCollection } from "geojson";
 
 /*********************************
  * URL matcher
@@ -43,8 +43,6 @@ function urlHasId(id: string | undefined): id is string {
 /*********************************
  * Marker Progress Atoms
  *********************************/
-
-type MarkerProgress = Record<string, boolean>;
 
 const markerProgress = atomWithStorage<MarkerProgress>("markerProgress", {});
 
@@ -389,3 +387,61 @@ export const getDropDownAtom = atom((get) => {
 });
 
 export const tourPreferenceAtom: PrimitiveAtom<string> = atom("full");
+
+/*********************************
+ * Copy Query / Atoms
+ *********************************/
+
+export const contentWarningCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof contentWarning.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["content_warning_copy"],
+  copyComponent: contentWarning,
+  queryFn: contentWarning.fetchCopy,
+}));
+
+export const tourInstructionsCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof tourInstructions.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["tour_instructions_copy"],
+  copyComponent: tourInstructions,
+  queryFn: tourInstructions.fetchCopy,
+}));
+
+export const sponsorsCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof sponsors.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["sponsors_copy"],
+  copyComponent: sponsors,
+  queryFn: sponsors.fetchCopy,
+}));
+
+export const aboutCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof about.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["about_copy"],
+  copyComponent: about,
+  queryFn: about.fetchCopy,
+}));
+
+export const statementCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof about.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["statement_copy"],
+  copyComponent: statement,
+  queryFn: statement.fetchCopy,
+}));
+
+export const referencesCopyQueryAtom = atomWithQuery<
+  ReturnType<typeof references.fetchCopy>,
+  unknown
+>((get) => ({
+  queryKey: ["references_copy"],
+  copyComponent: references,
+  queryFn: references.fetchCopy,
+}));
