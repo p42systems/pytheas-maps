@@ -1,7 +1,7 @@
 {
   "name": "pytheas-maps",
   "version": "1.0.0",
-  "description": "Pytheas is a React application that implements a guided walking tour, using Leaflet to visualize a map and Open Route Service to generate walking directions. The work was originally done through a grant funded by the Canadian Urban Institute to create a walking tour of the McDougall Corridor, a historic Black neighbourhood in Windsor, Ontario, and expanded for this implementation in partnership with Walter Cassidy of the Windsor Essex Rainbow Alliance (WERA). You may find that visiting queerwalk.ca gives you some insight into the ways this code can be used in your own project.",
+  "description": "Pytheas Maps is a package that contains the machines, services, and state management for Pytheas; a React application that implements a guided walking tour, using Leaflet to visualize a map and Open Route Service to generate walking directions. For more information on Pytheas, please visit https://github.com/p42systems/pytheas-WindsorLGBTQ.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -15,7 +15,14 @@
     "build": "tsup",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "pytheas",
+    "maps",
+    "walking tour",
+    "leaflet",
+    "open route service",
+    "ORS"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
